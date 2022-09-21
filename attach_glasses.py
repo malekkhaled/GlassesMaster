@@ -4,7 +4,7 @@ import numpy as np
 from scipy import ndimage
 
 face = cv2.imread("face-3019.png")
-glasses = cv2.imread("ray.png", -1)
+glasses = cv2.imread("MY_project-5.png", -1)
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
@@ -43,7 +43,7 @@ while True:
 
     #ret, img = face.read()
     img = face
-    #img = resize(face, 700)
+    img = resize(face, 700)
     img_copy = img.copy()
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -91,7 +91,7 @@ while True:
 
         # resize glasses to width of face and blend images
         face_width = w - x
-
+        print(face_width)
         # resize_glasses
         glasses_resize = resize(glasses, face_width)
 
