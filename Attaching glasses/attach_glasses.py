@@ -4,7 +4,7 @@ import numpy as np
 from scipy import ndimage
 
 face = cv2.imread("face-3019.png")
-glasses = cv2.imread("MY_project-5.png", -1)
+glasses = cv2.imread("My_project-5.png", -1)
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
