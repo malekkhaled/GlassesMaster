@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>GlassesMaster Home Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="header_container">
+		<h1>Welcome to GlassesMaster</h1>
+	</div>
+	<div class="body_container">
+		<h2>Receive a rating instantly!</h2>
+		<p class="body_text">
+		It's as easy as 1, 2, 3. First, upload an image of your face below.
+		Second, select some glasses on the following page that you would like to try on your face. 
+		Third, our system will judge the images and show you your results.
+		</p>
+		<div class="images_container">
+			<div class=img_container><img th:src="@{/images/faces/face1.jpg}"/></div>
+			<div class=img_container><img th:src="@{/images/faces/face2.jpg}"/></div>
+			<div class=img_container><img th:src="@{/images/faces/face3.jpg}"/></div>
+			<div class=img_container><img th:src="@{/images/faces/face4.jpg}"/></div>
+			<div class=img_container><img th:src="@{/images/faces/face5.jpg}"/></div>
+			<div class=img_container><img th:src="@{/images/faces/face6.jpg}"/></div>
+		</div>
+	</div>
+	<div class="end_container">
+		<div th:if="${faceExists == False}" class="noface">
+			<p style="color:red;">
+			There was an error detecting your face. <br>
+			Please make sure your face is front-facing and clearly visible in the image, then try uploading it again. 
+			</p>
+		</div>
+		<div th:if="${multipleFace == True}" class="noface">
+			<p style="color:red;">
+			There are too many faces detected in the image. <br>
+			Please make sure only one face is present in the image, then try uploading it again.
+			</p>
+		</div>
+		<div th:if="${faceAligned == False}" class="noface">
+			<p style="color:red;">
+			The detected face is not properly aligned. <br>
+			Please make sure your face is front-facing and clearly visible in the image, then try uploading it again.
+			</p>
+		</div>
+		<div th:if="${glassesOn == True}" class="noface">
+			<p style="color:red;">
+			Glasses have been detected already present on the face. <br>
+			Please make sure you remove any eyewear, then try uploading the image again.
+			</p>
+		</div>
+		<form action="/inventory/detect" th:result="@{/inventory/detect}" method="POST"  enctype="multipart/form-data">
+			<div class="image-upload">
+				<input type="button" class="file_select" onclick="document.getElementById('upload').click()" value="Upload an Image"/>
+				<input type="file" name="image" id="upload" accept="image/png, image/jpeg, image/gif, image/bmp" style="width:0; opacity:0; padding:25px; z-index:-1;">
+				<br>
+				<button type="submit" value="submit" class="submit" onclick="changeCursor()" disabled>Submit</button>
+			</div>
+		</form>
+		<h3>
+		Get started today!
+		</h3>
+		<p class="footer_text">
+		Upload an image of your face and press "Continue" to select from our inventory of eyeglasses.
+		</p>
+	</div>
+</body>
+
+<script type="text/javascript" th:src="@{/js/home.js}"></script>

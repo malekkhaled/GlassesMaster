@@ -1,0 +1,290 @@
+/* Page styling */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Montserrat';
+	font-style: normal;
+}
+
+/* Filters bar styling */
+div.filters_bar {
+	max-width: 1680px;
+	height: 60px;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	margin: auto;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	
+	background: #FFFFFF;
+	border-left: 1px solid #F5F5F5;
+	border-right: 1px solid #F5F5F5;
+	border-bottom: 1px solid #F5F5F5;
+	box-shadow: 0px 10px 20px -20px rgba(0, 0, 0, 0.25);
+}
+
+.filters_text {
+	position: absolute;
+	display: flex;
+	width: 90px;
+	height: 30px;
+	left: 80px;
+	align-items: center;
+	
+	font-weight: 500;
+	font-size: 15px;
+	color: rgba(94, 94, 94, 0.7);
+}
+
+.filters_text:hover {
+  cursor: default;
+}
+
+ul {
+	position: absolute;
+	left: 200px;
+	display: flex;
+	align-items: center;
+	padding-left: 75px;
+	padding-right: 75px;
+	height: 30px;
+	left: 200px;
+}
+
+ul > li {
+	display: inline-block;
+}
+
+li {
+	position: relative;
+	width: auto;
+	height: auto;
+	padding-left: 25px;
+	padding-right: 25px;
+
+	font-weight: 500;
+	font-size: 15px;
+	color: black;
+}
+
+li:hover {
+	cursor: pointer;
+}
+
+li:active i {
+	transform: translateY(1px);
+}
+
+li div:active ~ i {
+	transform: none;
+}
+
+li div:hover {
+	cursor: default;
+}
+
+.apply, .clear {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 130px;
+	height: 40px;
+	right: 80px;
+	
+	font-weight: 500;
+	font-size: 15px;
+	color: white;
+	background: black;
+	border-radius: 6px;
+}
+
+.clear {
+	right: 230px;
+}
+
+.apply:hover, .clear:hover, .continue:hover {
+	cursor: pointer;
+	background: gray;
+}
+
+.apply:active, .clear:active, .continue:active {
+	transform: scale(0.95);
+}
+
+.popup {
+	display: none;
+	position: absolute;
+	height: auto;
+	max-height: 40vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	left: 25%;
+	top: 120%;
+	
+	font-weight: 400;
+	
+	background: #FFFFFF;
+	border: 1px solid lightgray;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.popup span {
+ 	display: inline-flex;
+	padding: 2px;
+ 	padding-right: 30px;
+ 	white-space: nowrap;
+}
+
+/* Body styling */
+div.body_container {
+	position: relative;
+	top: 60px;
+	display: table;
+	width: 100vw;
+	min-height: calc(100vh - 260px);
+	max-width: 1680px;
+	margin: auto;
+	z-index: 0;
+	
+	border-left: 1px solid #F5F5F5;
+	border-right: 1px solid #F5F5F5;
+}
+
+h1 {
+	position: absolute;
+	width: 880px;
+	height: 55px;
+	left: calc(50% - 880px/2);
+	top: 0px;
+	
+	font-weight: 400;
+	font-size: 36px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.noglasses {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 65px;
+	margin: auto;
+	max-width: 880px;
+	text-align: center;
+}
+
+/* Glasses elements styling */
+div.glasses_container {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 20px;
+	top: 40px;
+	align-items: center;
+	justify-content: center;
+}
+
+div.eyeglass_container {
+	padding: 20px;
+	width: 280px;
+	height: 300px;
+}
+
+div.eyeglass_item {
+	cursor: pointer;
+	width: 280px;
+	height: 300px;
+	
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background-color: white;
+	transition: transform .2s;
+}
+
+div.eyeglass_item:hover {
+	transform: scale(1.05);
+	background-color: #F5F5F5;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+div.eyeglass_item:hover .attribute_text {
+	transform: scale(calc(1 / 1.05));
+}
+
+div.eyeglass_item:active {
+	transform: scale(1.0);
+}
+
+.glasses_checkbox {
+	display: none;
+}
+
+div.eyeglass_img {
+	width: 280px;
+	height: 140px;
+	box-sizing: border-box;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+div.attribute_text {
+	width: 240px;
+	height: auto;
+	max-height: 120px;
+	padding: 20px;
+	top: 160px;
+	
+	transition: transform .2s;
+}
+
+.color_attribute, .style_attribute, .brand_attribute {
+	float: right;
+}
+
+span.attribute_type {
+	font-weight: 500;
+}
+
+/* End block styling */
+.end_container {
+	position: absolute;
+	width: 100vw;
+	height: 200px;
+	max-width: 1680px;
+	margin: auto;
+	top: 100%;
+	z-index: 1;
+	
+	border-left: 1px solid #F5F5F5;
+	border-right: 1px solid #F5F5F5;
+}
+
+.continue {
+	position: fixed;
+	width: 200px;
+	height: 60px;
+	bottom: 70px;
+	left: calc(50% - 200px/2);
+	
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+	color: white;
+	background: black;
+	border: none;
+	border-radius: 6px;
+	
+	font-weight: 500;
+	font-size: 18px;
+	text-align: center;
+	letter-spacing: -0.015em;
+}

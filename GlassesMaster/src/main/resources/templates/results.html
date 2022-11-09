@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>GlassesMaster Result Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/results.css}"/>
+    <script src="https://kit.fontawesome.com/ee733e5620.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="header_container">
+		<h1>The results are in!</h1>
+	</div>
+	<div class="body_container">
+		<form th:action="@{/results/index}" th:object="${pojo}" method="POST">
+			<th:block style="display:none;" th:each="item, stat : *{results}">
+				<input type="hidden" th:name="${'results['+__${stat.index}__+'].mergedImageID'}" th:id="${'results'+__${stat.index}__+'.mergedImageID'}" th:value="${resultsList[stat.index].mergedImageID}" readonly="readonly"/>
+				<input type="hidden" th:name="${'results['+__${stat.index}__+'].result'}" th:id="${'results'+__${stat.index}__+'.result'}" th:value="${resultsList[stat.index].result}" readonly="readonly"/>
+			</th:block>
+			<input type="hidden" name="index" th:value="${index}"/>
+			<button type="submit" name="scroll" th:if="${index} == 0" class="scroll_left_disabled" disabled><i class="fa-solid fa-caret-left fa-10x" id="left_arrow"></i></button>
+			<button type="submit" name="scroll" th:unless="${index} == 0" class="scroll_left" value="prev" onclick="changeCursor()"><i class="fa-solid fa-caret-left fa-10x" id="left_arrow"></i></button>
+			<button type="submit" name="scroll" th:if="${index} == ${maxIndex}" class="scroll_right_disabled" disabled><i class="fa-solid fa-caret-right fa-10x" id="right_arrow"></i></button>
+			<button type="submit" name="scroll" th:unless="${index} == ${maxIndex}" class="scroll_right" value="next" onclick="changeCursor()"><i class="fa-solid fa-caret-right fa-10x" id="right_arrow"></i></button>
+		</form>
+		<div class="img_container">
+			<img class="face" th:src="@{/temp/{filename}.jpg(filename=${result.mergedImageID})}">
+		</div>
+		<div class="result_text_box">
+			<h2>
+				We think these glasses look
+				<span th:if="${result.result}" style="color: green;"> good </span>
+				<span th:unless="${result.result}" style="color: red;"> bad </span>
+				on you.
+			</h2>
+			<br>
+			<p th:if="${result.result}">
+				Like, really good. You need to order yourself a pair of those right now.
+				Go show the world that you've got style!
+			</p>
+			<p th:unless="${result.result}">
+				Don't take it personally! Our system just thinks you'd look better in something else.
+				However, if you disagree, don't let us discourage you from rocking those frames!
+			</p>
+		</div>
+	</div>
+	<div class="bottom_container">
+		<form action="/results/return" th:action="@{/results/return}" th:object="${pojo}" method="POST">
+			<th:block style="display:none;" th:each="item, stat : *{results}">
+				<input type="hidden" th:name="${'results['+__${stat.index}__+'].mergedImageID'}" th:id="${'results'+__${stat.index}__+'.mergedImageID'}" th:value="${resultsList[stat.index].mergedImageID}" readonly="readonly"/>
+				<input type="hidden" th:name="${'results['+__${stat.index}__+'].result'}" th:id="${'results'+__${stat.index}__+'.result'}" th:value="${resultsList[stat.index].result}" readonly="readonly"/>
+			</th:block>
+			<button type="submit" class="to_glasses" onclick="changeCursor()">Try Different Glasses</button>
+		</form>
+		<form action="/home" th:action="@{/home}" method="GET">
+			<button class="restart" onclick="changeCursor()">Start Over</button>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript" th:src="@{/js/home.js}"></script>

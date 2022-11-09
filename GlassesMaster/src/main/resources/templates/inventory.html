@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head> 
+    <title>GlassesMaster Inventory</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/inventory.css}"/>
+    <script src="https://kit.fontawesome.com/ee733e5620.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="filters_bar">
+		<div class="filters_text">
+			<svg class="filters_icon" height="21" viewBox="0 0 21 21" width="21" xmlns="http://www.w3.org/2000/svg">
+				<g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(2 4)">
+					<path d="m4.5 0c.55228475 0 1 .44771525 1 1v2c0 .55228475-.44771525 1-1 1s-1-.44771525-1-1v-2c0-.55228475.44771525-1 1-1z"/>
+					<path d="m16.5 2h-11"/>
+					<path d="m3.5 2h-3"/>
+					<path d="m4.5 10c.55228475 0 1 .4477153 1 1v2c0 .5522847-.44771525 1-1 1s-1-.4477153-1-1v-2c0-.5522847.44771525-1 1-1z"/>
+					<path d="m16.5 12h-11"/>
+					<path d="m3.5 12h-3"/>
+					<path d="m12.5 5c.5522847 0 1 .44771525 1 1v2c0 .55228475-.4477153 1-1 1s-1-.44771525-1-1v-2c0-.55228475.4477153-1 1-1z"/>
+					<path d="m11.5 7h-11"/>
+					<path d="m16.5 7h-3"/>
+				</g>
+			</svg>
+			Filters
+		</div>
+		<ul class="filter_attributes">
+			<li class="field" id="color" onclick="showPopup('color_popup')">
+				<div class="popup" id="color_popup">
+					<span th:each="color : ${colors}"><input type="checkbox" class="color_filter" th:name="${color}" th:value="${color}"/>[[${color}]]</span>
+				</div>
+				Color <i class="fa-solid fa-caret-down"></i>
+			</li>
+			<li class="field" id="style" onclick="showPopup('style_popup')">
+				<div class="popup" id="style_popup">
+					<span th:each="style : ${styles}"><input type="checkbox" class="style_filter" th:name="${style}" th:value="${style}"/>[[${style}]]</span>
+				</div>
+				Style <i class="fa-solid fa-caret-down"></i>
+			</li>
+			<li class="field" id="brand" onclick="showPopup('brand_popup')">
+				<div class="popup" id="brand_popup">
+					<span th:each="brand : ${brands}"><input type="checkbox" class="brand_filter" th:name="${brand}" th:value="${brand}"/>[[${brand}]]</span>
+				</div>
+				Brand <i class="fa-solid fa-caret-down"></i>
+			</li>
+		</ul>
+		<div class="apply" onclick="applyFilters()">
+			Apply
+		</div>
+		<div class="clear" onclick="clearFilters()">
+			Clear
+		</div>
+	</div>
+	<div class="body_container">
+		<h1>Choose a pair of glasses from the selection below</h1>
+		<div th:if="${hasSelected == False}" class="noglasses">
+			<p style="color:red;">
+			No glasses were selected. Please select one or more glasses, and then press 'Continue'.
+			</p>
+		</div>
+		<br>
+		<br>
+		<form action="results" th:action="@{/results}"  method="post">
+			<div class="glasses_container">
+				<div class="eyeglass_container" th:each="eyeglass : ${allGlasses}">
+					<div class="eyeglass_item" th:id="${eyeglass.glassesID}" th:data-parameter="${eyeglass.glassesID}" th:onclick="invertCheckbox(this.getAttribute('data-parameter'));">
+						<div class="eyeglass_img">
+							<img th:src="@{/images/glasses/{filename}.png(filename=${eyeglass.glassesID})}">
+						</div>
+						<div class="attribute_text">
+							<span class="attribute_type">Color: </span><span class="color_attribute" th:text="${eyeglass.color}" th:id="${eyeglass.color}"></span><br>
+							<br>
+							<span class="attribute_type">Style: </span><span class="style_attribute" th:text="${eyeglass.style}" th:id="${eyeglass.style}"></span><br>
+							<br>
+							<span class="attribute_type">Brand: </span><span class="brand_attribute" th:text="${eyeglass.brand}" th:id="${eyeglass.brand}"></span><br>
+							<br>
+						</div>
+						<input type="checkbox" class="glasses_checkbox" th:id="${eyeglass.glassesID} + '_checkbox'" th:field="${selectedGlasses.glasses}" th:value="${eyeglass.glassesID}"/>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="faceId" id="faceId" th:value="${faceId}" readonly/>
+			<div class="end_container">
+				<input type="submit" class="continue" value="Continue" onclick="changeCursor()"/>
+			</div>
+		</form>
+	</div>
+</body>
+
+<script type="text/javascript" th:src="@{/js/inventory.js}"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>

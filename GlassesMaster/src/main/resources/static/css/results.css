@@ -1,0 +1,230 @@
+/* Page styling */
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Montserrat';
+	font-style: normal;
+}
+
+/* Header styling */
+h1 {
+	position: absolute;
+	width: 420px;
+	height: 50px;
+	left: calc(50% - 420px/2);
+	top: 25px;
+	
+	font-weight: 500;
+	font-size: 48px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: black;
+}
+
+div.header_container {
+	max-width: 1680px;
+	height: 150px;
+	margin: auto;
+	background: #F5F5F5;
+}
+
+/* Body styling */
+div.body_container {
+	position: relative;
+	max-width: 1680px;
+	height: 920px;
+	margin: auto;
+	z-index: 1;
+	
+	border-left: 1px solid #F5F5F5;
+	border-right: 1px solid #F5F5F5;
+	box-shadow: 0px 20px 10px -10px rgba(0, 0, 0, 0.25);
+}
+
+/* Scroll left and right button styling */
+button.scroll_left, button.scroll_left_disabled {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	left: calc(50% - 150px/2 - 635px);
+	top: 325px;
+	border-radius: 50%;
+	border: none;
+	background-color: black;
+	transition: transform .2s;
+}
+
+button.scroll_right, button.scroll_right_disabled {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	left: calc(50% - 150px/2 + 635px);
+	top: 325px;
+	border-radius: 50%;
+	border: none;
+	background-color: black;
+	transition: transform .2s;
+}
+
+.scroll_left_disabled, .scroll_right_disabled {
+	opacity: 25%;
+}
+
+#left_arrow, #right_arrow {
+	color: white;
+	background: none;
+	transition: transform .2s;
+}
+
+.scroll_left:hover, .scroll_right:hover {
+	background-color: lightgray;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.scroll_left:hover #left_arrow, .scroll_right:hover #right_arrow {
+	color: #4b4b4b;
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.scroll_left:active, .scroll_right:active {
+	transform: scale(0.95);
+}
+
+.scroll_left:active #left_arrow, .scroll_right:active #right_arrow {
+	transform: scale(0.9);
+}
+
+/* Result image styling */
+div.img_container {
+	position: absolute;
+	width: 1000px;
+	height: 600px;
+	left: calc(50% - 1000px/2);
+	top: 100px;
+}
+
+img.face {
+	max-width: 100%;
+	max-height: 100%;
+	display: block;
+	margin: auto;
+}
+
+/* Result text styling */
+div.result_text_box {
+	position: absolute;
+	max-width: 830px;
+	height: 150px;
+	top: 730px;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+
+h2 {
+	position: absolute;
+	width: 830px;
+	height: 50px;
+	left: 0;
+	right: 0;
+	top: 0;
+	margin: auto;
+
+	font-weight: 400;
+	font-size: 36px;
+	line-height: 50px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+p {
+	position: absolute;
+	max-width: 750px;
+	min-height: 100px;
+	left: 0;
+	right: 0;
+	top: 60px;
+	margin: auto;
+	
+	font-weight: 300;
+	font-size: 24px;
+	line-height: 30px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+/* Bottom block styling */
+div.bottom_container {
+	position: relative;
+	max-width: 1680px;
+	min-height: 200px;
+	max-height: 600px;
+	height: calc(100vh - 1070px);
+	margin: auto;
+	z-index: 0;
+	
+	background-image: url('../images/backgrounds/webend_bg.jpg');
+	
+	background-attachment: fixed;
+	background-position-y: bottom;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-size: auto;
+	
+	box-shadow: inset 0 0 10px 2000px rgba(0, 0, 0, 0.5);
+}
+
+.to_glasses {
+	position: absolute;
+	width: 200px;
+	height: 55px;
+	left: calc(50% - 225px);
+	top: calc(50% - 49px/2);
+	
+	background: #FFFFFF;
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+	border: 3px solid black;
+	
+	font-weight: 500;
+	font-size: 18px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: black;
+}
+
+.restart {
+	position: absolute;
+	width: 200px;
+	height: 55px;
+	left: calc(50% + 25px);
+	top: calc(50% - 49px/2);
+	
+	background: #FFFFFF;
+	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+	border-radius: 6px;
+	border: 3px solid black;
+	
+	font-weight: 500;
+	font-size: 18px;
+	text-align: center;
+	letter-spacing: -0.015em;
+	color: black;
+}
+
+.to_glasses:hover, .restart:hover {
+	color: white;
+	background: black;
+	cursor: pointer;
+}
+
+.to_glasses:active, .restart:active {
+	transform: scale(0.95);
+}
