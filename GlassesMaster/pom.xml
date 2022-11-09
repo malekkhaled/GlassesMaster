@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.3</version>
+		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>capstone.ms</groupId>
@@ -15,7 +15,7 @@
 	<description>Capstone Spring application that integrates with MS Azure ML</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
+		<spring-cloud-azure.version>4.4.0</spring-cloud-azure.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,13 +30,31 @@
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-starter-keyvault</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-starter-storage</artifactId>
+		</dependency>
+  		<dependency>
+      		<groupId>com.opencsv</groupId>
+      		<artifactId>opencsv</artifactId>
+      		<version>5.3</version>
+  		</dependency>
+  		<dependency>
+		    <groupId>org.imgscalr</groupId>
+		    <artifactId>imgscalr-lib</artifactId>
+		    <version>4.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
