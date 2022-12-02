@@ -9,11 +9,11 @@ Metrics from azure machine learning studio
 Testimonials Video
 
 
-#Glasses Master Folder
+# Glasses Master Folder
 Contains full version for the application code.
 
-#Script_run
+# Script_run
 contains the python code for implementing the machine learning model manually
 
-#Documentaion Folder
+# Documentaion Folder
 Contains all of our documentation documents for the project.
