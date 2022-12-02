@@ -8,3 +8,12 @@ Accuracy of the Machine Learning model
 Metrics from azure machine learning studio
 Testimonials Video
 
+
+#Glasses Master Folder
+Contains full version for the application code.
+
+#Script_run
+contains the python code for implementing the machine learning model manually
+
+#Documentaion Folder
+Contains all of our documentation documents for the project.
